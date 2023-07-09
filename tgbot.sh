@@ -38,7 +38,8 @@ deleteMessages() {
   local command='curl '"'"'https://api.telegram.org/bot';
   command+=$1; # $TOKEN
   command+='/getUpdates?offset=';
-  command+=$(($lastId + 1));
+  # This is removing an extra api message, next line fix it. # command+=$(($lastId + 1));
+  command+=$(($lastId));
   command+=''"'"' --silent';
   _result=$(eval $command);
 }
