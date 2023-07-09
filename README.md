@@ -6,6 +6,7 @@ Run commands in a remote system using Telegram chat. This let you control device
 - curl
 - jq
 - telegram bot api token ([get it here](https://t.me/BotFather))
+__You can run ./install.sh to install the dependencies automatically__
 
 # Commands
 - /start
