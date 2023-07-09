@@ -24,3 +24,6 @@ _You can run ./install.sh to install the dependencies automatically_
 - Start the telegram bot bash code 
 - Send command **/login yourPassword** to the chat of your Telegram bot
 - Send command **run ls** or any other command and wait for the response
+
+# Video
+Here is an example of instalation an usage: [watch video](tutorialtgbotsh.mp4)
