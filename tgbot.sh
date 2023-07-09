@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# TODO: Check if curl and jq are installed
-
 # load a file into a variable
 loadFile() {
   local -n _result=$2;
@@ -16,8 +14,7 @@ encodeURIComponent() {
 
   for (( pos=0 ; pos<strlen ; pos++ )); do
      c=${string:$pos:1}
-     case "$c" in
-        [-_.~a-zA-Z0-9] ) o="${c}" ;;
+     case "$c" in                                                                                            [-_.~a-zA-Z0-9] ) o="${c}" ;;
         * )               printf -v o '%%%02x' "'$c"
      esac
      encoded+="${o}";
@@ -38,8 +35,8 @@ deleteMessages() {
   local command='curl '"'"'https://api.telegram.org/bot';
   command+=$1; # $TOKEN
   command+='/getUpdates?offset=';
-  # This is removing an extra api message, next line fix it. # command+=$(($lastId + 1));
   command+=$(($lastId));
+
   command+=''"'"' --silent';
   _result=$(eval $command);
 }
@@ -56,16 +53,18 @@ sendResponse() {
     command+='&text=';
     command+='ResponseIsChunked:';
     command+=''"'"' --silent';
-    $(eval $command); 
+    _result=$(eval $command);
     for ((i=0; i<${#response}; i+=4000)) do
-      local commmand2='curl '"'"'https://api.telegram.org/bot';
-      command2+=$TOKEN;
-      command2+='/sendMessage?chat_id=';
-      command2+=$chatId;
-      command2+='&text=';
-      command2+="${response:$i:$(($i + 4000))}"; # TODO: encodeURIComponent
-      command2+=''"'"' --silent';
-      _result=$(eval $command);
+       local command2='curl '"'"'https://api.telegram.org/bot';
+       command2+=$TOKEN;
+       command2+='/sendMessage?chat_id=';
+       command2+=$chatId;
+       command2+='&text=';
+       globEncoded="";
+       encodeURIComponent "${response:$i:4000}";
+       command2+="$globEncoded";
+       command2+=''"'"' --silent';
+       _result=$(eval $command2);
     done
   else
     local command='curl '"'"'https://api.telegram.org/bot';
@@ -76,10 +75,7 @@ sendResponse() {
     globEncoded="";
     encodeURIComponent "$response"; # uses globEncoded
     command+="$globEncoded";
-
-    # command+="$response"; # TODO: encodeURIComponent
     command+=''"'"' --silent';
-
     _result=$(eval $command);
   fi
 }
@@ -114,6 +110,7 @@ processData() {
     sendResponse "$aux2" "$chatId" dummy;
   fi
 
+  # This hello or /start its here as an example on how to implement your commands
   if [[ ${text:1:5} = 'hello' || ${text:1:6} = '/start' ]]; then
     echo "/start or hello found!";
     local aux3='Hey ';
@@ -125,12 +122,12 @@ processData() {
 
   local boolIsLogged;
   isLoggedInUser "$username" boolIsLogged;
-  if [[ $boolIsLogged = 'true' ]]; then 
+  if [[ $boolIsLogged = 'true' ]]; then
     if [[ ${text:1:4} = '/run' ]]; then
       commandLength=${#text};
       commandLength=$(($commandLength - 7));
       output="$(eval ${text:6:$commandLength})";
-      if [[ -z $output ]]; then 
+      if [[ -z $output ]]; then
         sendResponse 'Void output from stdout' "$chatId" dummy
       else
         sendResponse "$output" "$chatId" dummy
@@ -138,9 +135,6 @@ processData() {
     fi
   fi
 }
-
-
-
 
 
 
@@ -200,8 +194,6 @@ while [ true ]; do
   done
 
   deleteMessages "$TOKEN" dummy;
-  sleep 6s;
+  sleep 7s;
 
 done
-
-
