@@ -3,7 +3,7 @@
 # load a file into a variable
 loadFile() {
   local -n _result=$2;
-  _result=$(cat $1);
+  _result=$(cat "$1");
 }
 
 encodeURIComponent() {
