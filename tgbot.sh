@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
-# load a file into a variable
+# Load a file into a variable
 loadFile() {
   local -n _result=$2;
   _result=$(cat "$1");
 }
 
+# Encode quotes and other characters that can break the response embeeded into the url
 encodeURIComponent() {
   local string="${1}";
   local strlen=${#string};
@@ -22,6 +23,7 @@ encodeURIComponent() {
   globEncoded=$(echo "${encoded}");
 }
 
+# Load new Telegram messages into a variable
 getUpdates() {
   local -n _result=$2;
   local command='curl '"'"'https://api.telegram.org/bot';
@@ -30,6 +32,7 @@ getUpdates() {
   _result=$(eval $command);
 }
 
+# Delete all Telegram messages from the API (because messages already processed)
 deleteMessages() {
   local -n _result=$2;
   local command='curl '"'"'https://api.telegram.org/bot';
@@ -41,10 +44,12 @@ deleteMessages() {
   _result=$(eval $command);
 }
 
+# Answer to the user
 sendResponse() {
   local -n _result=$3;
   local response=$1;
   local chatId=$2;
+  # If the response to send is bigger than the max allowed size of a Telegram Message
   if [[ ${#response} -gt 4000 ]]; then
     local command='curl '"'"'https://api.telegram.org/bot';
     command+=$TOKEN;
@@ -53,7 +58,9 @@ sendResponse() {
     command+='&text=';
     command+='ResponseIsChunked:';
     command+=''"'"' --silent';
+    # Send the message "ResponseIsChunked:" to indicate that the response will be chunked into multiple messages
     _result=$(eval $command);
+    # Send the big respomse in chuncks of 4000 characters
     for ((i=0; i<${#response}; i+=4000)) do
        local command2='curl '"'"'https://api.telegram.org/bot';
        command2+=$TOKEN;
@@ -80,6 +87,7 @@ sendResponse() {
   fi
 }
 
+# Check if the @username is logged in (used the /login validPassword)
 isLoggedInUser() {
   local -n _result=$2;
   local username=$1;
@@ -92,6 +100,7 @@ isLoggedInUser() {
   _result="false";
 }
 
+# This function checks if any command is detected and defines what to do when the command is detected
 processData() {
   local -n _result=$4;
   local text=$1;
@@ -141,7 +150,7 @@ processData() {
 loadFile token.txt TOKEN;        # load token.txt into $TOKEN
 loadFile password.txt PASSWORD;  # load password.txt into $PASSWORD
 
-# manual clean API:
+# manual clean API example:
 # lastId=890167895;
 # deleteMessages "$TOKEN" dummy;
 
@@ -158,6 +167,7 @@ if [[ -z $PASSWORD ]]; then
   exit;
 fi
 
+# Bot logic (Main loop)
 while [ true ]; do
   getUpdates $TOKEN updates;
   if [[ -z $updates ]]; then
