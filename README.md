@@ -26,4 +26,4 @@ _You can run ./install.sh to install the dependencies automatically_
 - Send command **run ls** or any other command and wait for the response
 
 # Video
-Here is an example of instalation and usage: [watch video](https://youtu.be/-_QyXqj41-Q)
+Here is an example of instalation and usage: [![Videoturorial image preview](https://raw.githubusercontent.com/StringManolo/tgbot.sh/master/images/tgbotshvideopreview.jpg)](https://youtu.be/-_QyXqj41-Q)
