@@ -1,6 +1,8 @@
 # Bash Telegram Bot
-Run commands in a remote system using Telegram chat. This let you control devices without open ports.
-
+Run commands in a remote system using Telegram chat. This let you control devices without open ports.  
+  
+https://github.com/StringManolo/tgbot.sh/assets/56775178/8b74eb52-f094-4281-a5ba-3937b2c10fca
+  
 # Requeriments
 - bash
 - curl
@@ -24,16 +26,4 @@ _You can run ./install.sh to install the dependencies automatically_
 - Start the telegram bot bash code 
 - Send command **/login yourPassword** to the chat of your Telegram bot
 - Send command **run ls** or any other command and wait for the response
-
-# Video
-Here is an example of instalation and usage: 
-
-
-https://github.com/StringManolo/tgbot.sh/assets/56775178/6e5b59b0-2131-4b4b-b975-3441f1c7a26f
-
-
-
-
-
-
-
+- 
