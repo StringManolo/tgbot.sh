@@ -29,7 +29,9 @@ _You can run ./install.sh to install the dependencies automatically_
 Here is an example of instalation and usage: 
 
 
-https://github.com/StringManolo/tgbot.sh/assets/56775178/f934b4f7-2ecf-464f-a77f-5ba5b84b15fb
+https://github.com/StringManolo/tgbot.sh/assets/56775178/6e5b59b0-2131-4b4b-b975-3441f1c7a26f
+
+
 
 
 
