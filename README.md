@@ -27,3 +27,11 @@ _You can run ./install.sh to install the dependencies automatically_
 
 # Video
 Here is an example of instalation and usage: [![Videoturorial image preview](https://raw.githubusercontent.com/StringManolo/tgbot.sh/master/images/tgbotshvideopreview.jpg)](https://youtu.be/-_QyXqj41-Q)
+
+Test Video in HTML:  
+<video width="320" height="240" controls>
+  <source src="https://youtu.be/-_QyXqj41-Q" type="video/mp4">
+  Tu navegador no admite el elemento de video.
+</video>
+
+
