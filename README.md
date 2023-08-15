@@ -30,7 +30,7 @@ Here is an example of instalation and usage: [![Videoturorial image preview](htt
 
 Test Video in HTML:  
 <video width="320" height="240" controls>
-  <source src="https://youtu.be/-_QyXqj41-Q" type="video/mp4">
+  <source src="https://github.com/StringManolo/StringManolo.github.io/raw/master/images/tgbot.mp4" type="video/mp4">
   Tu navegador no admite el elemento de video.
 </video>
 
