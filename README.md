@@ -26,8 +26,12 @@ _You can run ./install.sh to install the dependencies automatically_
 - Send command **run ls** or any other command and wait for the response
 
 # Video
-Here is an example of instalation and usage: [![Videoturorial image preview](https://raw.githubusercontent.com/StringManolo/tgbot.sh/master/images/tgbotshvideopreview.jpg)](https://youtu.be/-_QyXqj41-Q)
+Here is an example of instalation and usage: 
 
-Test Video in Markdown:  
-![TgbotVideo](https://github.com/StringManolo/StringManolo.github.io/raw/master/images/tgbot.mp4)
+
+https://github.com/StringManolo/tgbot.sh/assets/56775178/f934b4f7-2ecf-464f-a77f-5ba5b84b15fb
+
+
+
+
 
